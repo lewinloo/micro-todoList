@@ -1,0 +1,2 @@
+[ERROR][main.go:38]2022/05/13 11:45:26 Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connect: connection refused
+[INFO][pkg.go:28]2022/05/13 13:31:55 rbacService --record not found

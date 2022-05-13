@@ -1,0 +1,93 @@
+basePath: /api/v1
+definitions:
+  response.Base:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  services.LoginRequest:
+    properties:
+      captchaId:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+      verifyCode:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: 技术栈 Gin + Go-Micro + Gorm + gRPC
+  title: 微服务 API
+  version: 0.0.1
+paths:
+  /captcha:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取验证码成功返回体
+          schema:
+            $ref: '#/definitions/response.Base'
+      summary: 获取验证码
+      tags:
+      - RBAC
+  /goods:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 当前页第几页
+        in: query
+        name: page
+        type: integer
+      - description: 当前页的大小
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取商品列表返回体
+          schema:
+            $ref: '#/definitions/response.Base'
+      summary: 获取商品列表
+      tags:
+      - 商品模块
+  /login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 登录需要的json参数
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/services.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取验证码成功返回体
+          schema:
+            $ref: '#/definitions/response.Base'
+      summary: 用户登录功能
+      tags:
+      - RBAC
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

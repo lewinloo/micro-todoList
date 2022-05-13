@@ -1,0 +1,2 @@
+[INFO][pkg.go:20]2022/05/12 15:55:47 goodsService --{"id":"go.micro.client","code":500,"detail":"service goods: not found","status":"Internal Server Error"}
+[INFO][pkg.go:20]2022/05/12 16:16:17 goodsService --{"id":"go.micro.client","code":500,"detail":"service goods: not found","status":"Internal Server Error"}
