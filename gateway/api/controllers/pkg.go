@@ -6,9 +6,9 @@ import (
 )
 
 // 包装错误
-func PanicIfTestError(err error) {
+func panicIfError(err error) {
 	if err != nil {
-		err = errors.New("testService --" + err.Error())
+		err = errors.New(err.Error())
 		logging.Info(err)
 		panic(any(err))
 	}

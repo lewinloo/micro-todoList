@@ -1,6 +1,8 @@
 package global
 
 import (
+	"gateway/wrappers"
+
 	"github.com/asim/go-micro/plugins/registry/consul/v4"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/client"
@@ -8,8 +10,8 @@ import (
 )
 
 var (
-	MicroClient client.Client
-	ConsulReg   registry.Registry
+	UserClient client.Client
+	ConsulReg  registry.Registry
 )
 
 func init() {
@@ -21,9 +23,10 @@ func init() {
 	ConsulReg = consulRegistry
 
 	// Create service
-	srv := micro.NewService(
+	userMicroService := micro.NewService(
 		// 注册 consul
-		micro.Registry(consulRegistry),
+		micro.Name("user.client"),
+		micro.WrapClient(wrappers.NewUserWrapper),
 	)
-	MicroClient = srv.Client()
+	UserClient = userMicroService.Client()
 }

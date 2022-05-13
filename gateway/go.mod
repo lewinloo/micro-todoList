@@ -3,7 +3,6 @@ module gateway
 go 1.18
 
 require (
-	github.com/asim/go-micro/plugins/registry/consul/v4 v4.0.0-20220511085541-13b76331ec6f
 	github.com/gin-gonic/gin v1.7.7
 	github.com/swaggo/gin-swagger v1.4.3
 	github.com/swaggo/swag v1.8.1
@@ -17,9 +16,12 @@ require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/acomagu/bufpipe v1.0.3 // indirect
+	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
 	github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da // indirect
+	github.com/asim/go-micro/plugins/registry/consul/v4 v4.0.0-20220511085541-13b76331ec6f
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect

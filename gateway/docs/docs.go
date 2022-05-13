@@ -16,8 +16,8 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/captcha": {
-            "get": {
+        "/login": {
+            "post": {
                 "consumes": [
                     "application/json"
                 ],
@@ -25,12 +25,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "RBAC"
+                    "用户模块"
                 ],
-                "summary": "获取验证码",
+                "summary": "登录接口",
+                "parameters": [
+                    {
+                        "description": "json参数",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.UserLoginReq"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "获取验证码成功返回体",
+                        "description": "返回体",
                         "schema": {
                             "$ref": "#/definitions/response.Base"
                         }
@@ -38,7 +49,40 @@ const docTemplate = `{
                 }
             }
         },
-        "/goods": {
+        "/register": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "注册接口",
+                "parameters": [
+                    {
+                        "description": "json参数",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.UserRegisterReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回体",
+                        "schema": {
+                            "$ref": "#/definitions/response.Base"
+                        }
+                    }
+                }
+            }
+        },
+        "/test": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -47,9 +91,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "商品模块"
+                    "test"
                 ],
-                "summary": "获取商品列表",
+                "summary": "test 接口",
                 "parameters": [
                     {
                         "type": "integer",
@@ -66,40 +110,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "获取商品列表返回体",
-                        "schema": {
-                            "$ref": "#/definitions/response.Base"
-                        }
-                    }
-                }
-            }
-        },
-        "/login": {
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "RBAC"
-                ],
-                "summary": "用户登录功能",
-                "parameters": [
-                    {
-                        "description": "登录需要的json参数",
-                        "name": "params",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/services.LoginRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "获取验证码成功返回体",
+                        "description": "返回体",
                         "schema": {
                             "$ref": "#/definitions/response.Base"
                         }
@@ -124,19 +135,27 @@ const docTemplate = `{
                 }
             }
         },
-        "services.LoginRequest": {
+        "services.UserLoginReq": {
             "type": "object",
             "properties": {
-                "captchaId": {
-                    "type": "string"
-                },
                 "password": {
                     "type": "string"
                 },
                 "username": {
                     "type": "string"
+                }
+            }
+        },
+        "services.UserRegisterReq": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
                 },
-                "verifyCode": {
+                "passwordConfirm": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }
